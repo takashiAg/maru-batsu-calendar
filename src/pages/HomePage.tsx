@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment, { Moment } from 'moment'
 import { FaRegCircle } from 'react-icons/fa'
-import { BsTriangle } from 'react-icons/bs'
+import { BsTriangle, BsQuestion } from 'react-icons/bs'
 import { MdClose } from 'react-icons/md'
 const Container = styled.div`
     position: relative;
@@ -48,7 +48,7 @@ interface DayProps {
 const Day: React.FC<DayProps> = (props) => {
     const { disable = false, date } = props
     const [value, setValue] = useState<number>(0)
-    const handleClick = () => setValue((v) => (v > 1 ? 0 : v + 1))
+    const handleClick = () => setValue((v) => (v > 2 ? 0 : v + 1))
     return (
         <DayContainer>
             <DayLabel disable={disable}>{date.date() === 1 ? date.format('M/D') : date.format('D')}</DayLabel>
@@ -57,6 +57,7 @@ const Day: React.FC<DayProps> = (props) => {
                 {!disable && value === 0 && <MdClose />}
                 {!disable && value === 1 && <BsTriangle />}
                 {!disable && value === 2 && <FaRegCircle />}
+                {!disable && value === 3 && <BsQuestion />}
             </DayContent>
         </DayContainer>
     )
